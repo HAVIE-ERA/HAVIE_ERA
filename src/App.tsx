@@ -10,6 +10,9 @@ import mainPicSource from "./main-2.jpg";
 import hthyCover from "./HTHY-cover.jpg";
 import nextToYouCover from "./Next to you-cover.jpg";
 import bioPic from "./bio pic.jpg";
+import mainPicV4 from "./main_pic_v4.jpg";
+import mainPicWhite from "./main pic-white.jpg";
+import mainPicBlack from "./main pic-black.jpg";
 
 type Tab = "Home" | "Music" | "About" | "Contact";
 
