@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700&family=Playfair+Display:italic,wght@700&family=Mrs+Saint+Delafield&family=Space+Grotesk:wght@700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo Black", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-script: "Mrs Saint Delafield", cursive;
+  --font-logo: "Space Grotesk", sans-serif;
+  
+  --color-pink-accent: #f0a1c7; /* A softer, more "Aria Monroe" style pink */
+  --color-bg-light: #e6e4e1; /* Slightly warmer off-white/grey */
+}
+
+@layer base {
+  body {
+    @apply bg-bg-light text-black antialiased;
+  }
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px black;
+  color: transparent;
+}
+
+.pink-glow {
+  text-shadow: 0 0 20px rgba(240, 161, 199, 0.3);
+}
