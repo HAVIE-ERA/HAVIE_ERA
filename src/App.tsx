@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
 
-import mainPicSource from "./main2.png";
+const mainPicSource = "/final_test.png";
 const hthyCover = "/v2_hthy.jpg";
 const nextToYouCover = "/v2_next.jpg";
 const bioPic = "/v2_bio.jpg";
@@ -21,11 +21,16 @@ type Tab = "Home" | "Music" | "About" | "Contact";
  */
 function CutoutImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
   return (
-    <div className={`relative ${className} border-4 border-red-500`}>
+    <div 
+      className={`relative ${className} border-4 border-red-500 bg-contain bg-center bg-no-repeat`}
+      style={{ backgroundImage: `url(${src})` }}
+      aria-label={alt}
+    >
+      {/* Hidden img for accessibility */}
       <img 
         src={src} 
         alt={alt} 
-        className="w-full h-full object-contain"
+        className="w-full h-full opacity-0"
       />
     </div>
   );
