@@ -6,13 +6,12 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
-import mainPicSource from "./main-2.jpg";
-import hthyCover from "./HTHY-cover.jpg";
-import nextToYouCover from "./Next to you-cover.jpg";
-import bioPic from "./bio pic.jpg";
-import mainPicV4 from "./main_pic_v4.jpg";
-import mainPicWhite from "./main pic-white.jpg";
-import mainPicBlack from "./main pic-black.jpg";
+
+const mainPicSource = "/main-2.jpg";
+const hthyCover = "/hthy-cover.jpg";
+const nextToYouCover = "/next-to-you-cover.jpg";
+const bioPic = "/bio-pic.jpg";
+
 
 type Tab = "Home" | "Music" | "About" | "Contact";
 
