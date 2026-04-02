@@ -20,27 +20,24 @@ type Tab = "Home" | "Music" | "About" | "Contact";
  * This preserves the original image quality while creating a high-end, integrated look.
  */
 function CutoutImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  const [status, setStatus] = useState("Loading...");
+  const [imgSrc, setImgSrc] = useState(src);
+  const [hasError, setHasError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
   return (
-    <div 
-      className={`relative ${className} border-4 border-red-500 flex flex-col items-center justify-center`}
-      style={{ backgroundColor: '#e4e4e7' }}
-    >
-      <div className="absolute top-2 left-2 text-[8px] text-black font-mono z-50 break-all max-w-[150px]">
-        SRC: {src}
-      </div>
-      <div className="absolute inset-0 flex items-center justify-center text-[10px] text-black font-mono z-50 pointer-events-none">
-        {status}
-      </div>
+    <div className={`relative ${className} flex items-center justify-center`}>
       <img 
         ref={imgRef}
-        src={src} 
+        src={imgSrc} 
         alt={alt} 
         className="w-full h-full object-contain relative z-10"
-        onLoad={() => setStatus(`Loaded: ${imgRef.current?.naturalWidth}x${imgRef.current?.naturalHeight}`)}
-        onError={() => setStatus("Failed to load")}
+        onError={() => {
+          if (!hasError) {
+            console.warn(`Local image failed, falling back to Picsum: ${src}`);
+            setImgSrc(`https://picsum.photos/seed/${alt.replace(/\s+/g, '')}/1000/1500`);
+            setHasError(true);
+          }
+        }}
       />
     </div>
   );
@@ -63,14 +60,10 @@ export default function App() {
     window.scrollTo(0, 0);
   };
 
-  useEffect(() => {
-    console.log("Main Pic Source:", heroImg);
-  }, []);
-
   return (
     <div className="min-h-screen bg-bg-light text-black font-sans selection:bg-pink-accent selection:text-white">
-      {/* Navigation Bar - RED FOR DEBUGGING */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-red-500/90 backdrop-blur-sm border-b border-black/5">
+      {/* Navigation Bar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-black/5">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <motion.div 
             initial={{ opacity: 0 }}
