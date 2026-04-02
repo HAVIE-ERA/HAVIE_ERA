@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
 
-const mainPicSource = "/final_test.png";
+const mainPicSource = "/v3_test.png";
 const hthyCover = "/v2_hthy.jpg";
 const nextToYouCover = "/v2_next.jpg";
 const bioPic = "/v2_bio.jpg";
@@ -20,28 +20,24 @@ type Tab = "Home" | "Music" | "About" | "Contact";
  * This preserves the original image quality while creating a high-end, integrated look.
  */
 function CutoutImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  const [status, setStatus] = useState("Loading...");
   const imgRef = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
-    if (imgRef.current) {
-      const checkDim = () => {
-        console.log(`Image "${alt}" loaded. Dimensions: ${imgRef.current?.naturalWidth}x${imgRef.current?.naturalHeight}`);
-      };
-      if (imgRef.current.complete) {
-        checkDim();
-      } else {
-        imgRef.current.onload = checkDim;
-      }
-    }
-  }, [src, alt]);
-
   return (
-    <div className={`relative ${className} border-4 border-red-500 bg-zinc-200`}>
+    <div 
+      className={`relative ${className} border-4 border-red-500 flex items-center justify-center`}
+      style={{ backgroundColor: '#e4e4e7' }}
+    >
+      <div className="absolute inset-0 flex items-center justify-center text-[10px] text-black font-mono z-50 pointer-events-none">
+        {status}
+      </div>
       <img 
         ref={imgRef}
         src={src} 
         alt={alt} 
-        className="w-full h-full object-contain"
+        className="w-full h-full object-contain relative z-10"
+        onLoad={() => setStatus(`Loaded: ${imgRef.current?.naturalWidth}x${imgRef.current?.naturalHeight}`)}
+        onError={() => setStatus("Failed to load")}
       />
     </div>
   );
