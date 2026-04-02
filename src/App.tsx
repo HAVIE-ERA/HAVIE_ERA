@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
 
-const mainPicSource = "/main2.png";
+import mainPicSource from "./main2.png";
 const hthyCover = "/v2_hthy.jpg";
 const nextToYouCover = "/v2_next.jpg";
 const bioPic = "/v2_bio.jpg";
@@ -21,7 +21,7 @@ type Tab = "Home" | "Music" | "About" | "Contact";
  */
 function CutoutImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className} border-4 border-red-500`}>
       <img 
         src={src} 
         alt={alt} 
@@ -47,6 +47,10 @@ export default function App() {
     setIsMenuOpen(false);
     window.scrollTo(0, 0);
   };
+
+  useEffect(() => {
+    console.log("Main Pic Source:", mainPicSource);
+  }, []);
 
   return (
     <div className="min-h-screen bg-bg-light text-black font-sans selection:bg-pink-accent selection:text-white">
@@ -199,7 +203,7 @@ export default function App() {
                   </div>
 
                   {/* Person Image Layer */}
-                  <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none -translate-y-12">
+                  <div className="absolute inset-0 z-20 flex items-center justify-center -translate-y-12">
                     <motion.div
                       initial={{ y: 100, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
