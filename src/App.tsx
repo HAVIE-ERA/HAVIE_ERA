@@ -20,17 +20,28 @@ type Tab = "Home" | "Music" | "About" | "Contact";
  * This preserves the original image quality while creating a high-end, integrated look.
  */
 function CutoutImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (imgRef.current) {
+      const checkDim = () => {
+        console.log(`Image "${alt}" loaded. Dimensions: ${imgRef.current?.naturalWidth}x${imgRef.current?.naturalHeight}`);
+      };
+      if (imgRef.current.complete) {
+        checkDim();
+      } else {
+        imgRef.current.onload = checkDim;
+      }
+    }
+  }, [src, alt]);
+
   return (
-    <div 
-      className={`relative ${className} border-4 border-red-500 bg-contain bg-center bg-no-repeat`}
-      style={{ backgroundImage: `url(${src})` }}
-      aria-label={alt}
-    >
-      {/* Hidden img for accessibility */}
+    <div className={`relative ${className} border-4 border-red-500 bg-zinc-200`}>
       <img 
+        ref={imgRef}
         src={src} 
         alt={alt} 
-        className="w-full h-full opacity-0"
+        className="w-full h-full object-contain"
       />
     </div>
   );
