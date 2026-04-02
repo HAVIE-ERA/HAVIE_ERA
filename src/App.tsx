@@ -7,10 +7,10 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
 
-const mainPicSource = "/main-2.jpg";
-const hthyCover = "/hthy-cover.jpg";
-const nextToYouCover = "/next-to-you-cover.jpg";
-const bioPic = "/bio-pic.jpg";
+const mainPicSource = "https://picsum.photos/seed/havie/1000/1500";
+const hthyCover = "https://picsum.photos/seed/hthy/800/800";
+const nextToYouCover = "https://picsum.photos/seed/nexttoyou/800/800";
+const bioPic = "https://picsum.photos/seed/bio/800/1000";
 
 
 type Tab = "Home" | "Music" | "About" | "Contact";
