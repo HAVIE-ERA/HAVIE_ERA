@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
 
-const mainPicSource = "/v2_main.jpg";
+const mainPicSource = "/main2.png";
 const hthyCover = "/v2_hthy.jpg";
 const nextToYouCover = "/v2_next.jpg";
 const bioPic = "/v2_bio.jpg";
