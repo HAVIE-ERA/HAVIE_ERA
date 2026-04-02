@@ -7,10 +7,10 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
 
-import heroImg from "./hero.png";
-const hthyCover = "/v2_hthy.jpg";
-const nextToYouCover = "/v2_next.jpg";
-const bioPic = "/v2_bio.jpg";
+const mainPicSource = "/main.jpg";
+const hthyCover = "/hthy.jpg";
+const nextToYouCover = "/next.jpg";
+const bioPic = "/bio.jpg";
 
 
 type Tab = "Home" | "Music" | "About" | "Contact";
@@ -20,25 +20,26 @@ type Tab = "Home" | "Music" | "About" | "Contact";
  * This preserves the original image quality while creating a high-end, integrated look.
  */
 function CutoutImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  const [imgSrc, setImgSrc] = useState(src);
-  const [hasError, setHasError] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-
   return (
-    <div className={`relative ${className} flex items-center justify-center`}>
-      <img 
-        ref={imgRef}
-        src={imgSrc} 
-        alt={alt} 
-        className="w-full h-full object-contain relative z-10"
-        onError={() => {
-          if (!hasError) {
-            console.warn(`Local image failed, falling back to Picsum: ${src}`);
-            setImgSrc(`https://picsum.photos/seed/${alt.replace(/\s+/g, '')}/1000/1500`);
-            setHasError(true);
-          }
-        }}
-      />
+    <div className={`relative group ${className}`}>
+      {/* 1. Backdrop Glow: Creates a soft halo behind the subject to bridge the background gap */}
+      <div className="absolute inset-0 -m-10 bg-radial-gradient from-white via-white/40 to-transparent blur-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+      
+      {/* 2. Main Image with Masking */}
+      <div className="relative w-full h-full overflow-hidden" style={{
+        maskImage: 'radial-gradient(ellipse 50% 60% at 50% 45%, black 85%, transparent 100%)',
+        WebkitMaskImage: 'radial-gradient(ellipse 50% 60% at 50% 45%, black 85%, transparent 100%)',
+      }}>
+        <img 
+          src={src} 
+          alt={alt} 
+          className="w-full h-full object-cover brightness-[1.02] contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
+          referrerPolicy="no-referrer"
+        />
+        
+        {/* 3. Edge Bloom: Subtle light overlay to soften the transition further */}
+        <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-white/10 pointer-events-none" />
+      </div>
     </div>
   );
 }
@@ -219,7 +220,7 @@ export default function App() {
                       className="relative h-[75vh] md:h-[90vh] aspect-[3/4]"
                     >
                       <CutoutImage 
-                        src={heroImg} 
+                        src={mainPicSource} 
                         alt="HAVIE ERA"
                         className="w-full h-full"
                       />
