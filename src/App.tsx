@@ -7,10 +7,10 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
 
-const mainPicSource = "main.jpg";
-const hthyCover = "hthy.jpg";
-const nextToYouCover = "next.jpg";
-const bioPic = "bio.jpg";
+const mainPicSource = "/main.jpg";
+const hthyCover = "/hthy.jpg";
+const nextToYouCover = "/next.jpg";
+const bioPic = "/bio.jpg";
 
 
 type Tab = "Home" | "Music" | "About" | "Contact";
