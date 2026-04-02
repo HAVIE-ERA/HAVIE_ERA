@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
 
-const mainPicSource = "/v3_test.png";
+const mainPicSource = new URL('./v3_test.png', import.meta.url).href;
 const hthyCover = "/v2_hthy.jpg";
 const nextToYouCover = "/v2_next.jpg";
 const bioPic = "/v2_bio.jpg";
