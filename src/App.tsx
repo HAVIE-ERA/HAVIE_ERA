@@ -7,10 +7,10 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
 
-const mainPicSource = "/main.jpg";
-const hthyCover = "/hthy.jpg";
-const nextToYouCover = "/next.jpg";
-const bioPic = "/bio.jpg";
+import mainPicSource from "./main.jpg";
+import hthyCover from "./hthy.jpg";
+import nextToYouCover from "./next.jpg";
+import bioPic from "./bio.jpg";
 
 
 type Tab = "Home" | "Music" | "About" | "Contact";
@@ -21,25 +21,13 @@ type Tab = "Home" | "Music" | "About" | "Contact";
  */
 function CutoutImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
   return (
-    <div className={`relative group ${className}`}>
-      {/* 1. Backdrop Glow: Creates a soft halo behind the subject to bridge the background gap */}
-      <div className="absolute inset-0 -m-10 bg-radial-gradient from-white via-white/40 to-transparent blur-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
-      
-      {/* 2. Main Image with Masking */}
-      <div className="relative w-full h-full overflow-hidden" style={{
-        // Keep 85% of the center solid black (100% visible), then fade quickly at the very edges
-        maskImage: 'radial-gradient(ellipse 50% 60% at 50% 45%, black 85%, transparent 100%)',
-        WebkitMaskImage: 'radial-gradient(ellipse 50% 60% at 50% 45%, black 85%, transparent 100%)',
-      }}>
-        <img 
-          src={src} 
-          alt={alt} 
-          className="w-full h-full object-cover brightness-[1.02] contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
-        />
-        
-        {/* 3. Edge Bloom: Subtle light overlay to soften the transition further */}
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-white/10 pointer-events-none" />
-      </div>
+    <div className={`relative ${className}`}>
+      <img 
+        src={src} 
+        alt={alt} 
+        className="w-full h-full object-contain"
+        referrerPolicy="no-referrer"
+      />
     </div>
   );
 }
@@ -439,10 +427,6 @@ export default function App() {
               </a>
             ))}
           </div>
-        </div>
-        {/* Debug Info */}
-        <div className="mt-10 text-[8px] text-zinc-800 text-center uppercase tracking-widest opacity-20">
-          Assets: {mainPicSource} | {hthyCover} | {nextToYouCover} | {bioPic}
         </div>
       </footer>
     </div>
