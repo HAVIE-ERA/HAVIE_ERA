@@ -7,10 +7,10 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Home, Music, User, Mail, Instagram, Youtube, ShoppingBag, ArrowRight, Music2, X, Ship } from "lucide-react";
 
-import mainPicSource from "./main-2.jpg";
-import hthyCover from "./hthy-cover.jpg";
-import nextToYouCover from "./next-to-you-cover.jpg";
-import bioPic from "./bio-pic.jpg";
+const mainPicSource = "/main.jpg";
+const hthyCover = "/hthy.jpg";
+const nextToYouCover = "/next.jpg";
+const bioPic = "/bio.jpg";
 
 
 type Tab = "Home" | "Music" | "About" | "Contact";
@@ -439,6 +439,10 @@ export default function App() {
               </a>
             ))}
           </div>
+        </div>
+        {/* Debug Info */}
+        <div className="mt-10 text-[8px] text-zinc-800 text-center uppercase tracking-widest opacity-20">
+          Assets: {mainPicSource} | {hthyCover} | {nextToYouCover} | {bioPic}
         </div>
       </footer>
     </div>
